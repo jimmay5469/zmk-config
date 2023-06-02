@@ -8,53 +8,57 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+&mt {
+  flavor = "tap-preferred";
+};
+
 / {
-        keymap {
-                compatible = "zmk,keymap";
+  keymap {
+    compatible = "zmk,keymap";
 
-                default_layer {
-//                      |-----------------------------------|             |-----------------------------------|
-//                      | TAB |  Q  |  W  |  E  |  R  |  T  |             |  Y  |  U  |  I  |  O  |  P  |BKSP |
-//                      | ESC |  A  |  S  |  D* |  F* |  G  |             |  H  |  J* |  K* |  L  |  ;  | '   |
-//                      | SHFT|  Z  |  X  |  C  |  V  |  B  |---|     |---|  N  |  M  |  ,  |  .  |  /  |SHFT |
-//                      |---------------------| ALT | GUI | SPC |     | SPC | GUI | MIC |---------------------|
-//                                            |-----------------|     |-----------------|
-                        bindings = <
-              &kp TAB   &kp Q &kp W &kp E   &kp R   &kp T /*|             |*/ &kp Y &kp U   &kp I       &kp O   &kp P    &kp BSPC
-              &kp ESC   &kp A &kp S &lt 2 D &lt 1 F &kp G /*|             |*/ &kp H &lt 1 J &mt LCTRL K &kp L   &kp SEMI &kp SQT
-              &kp LSHFT &kp Z &kp X &kp C   &kp V   &kp B /*|             |*/ &kp N &kp M   &kp COMMA   &kp DOT &kp FSLH &kp RSHFT
-                                    &kp LALT &kp LGUI &kp SPC /*|     |*/ &kp SPC &kp RGUI &kp LA(LC(F10))
-                        >;
-                };
+    default_layer {
+      //                                    |-----------------------------------|             |-----------------------------------|
+      //                                    | TAB |  Q  |  W  |  E  |  R  |  T  |             |  Y  |  U  |  I  |  O  |  P  |BKSP |
+      //                                    | ESC |  A  |  S  |  D* |  F* |  G  |             |  H  |  J* |  K* |  L  |  ;  | '   |
+      //                                    | SHFT|  Z  |  X  |  C  |  V  |  B  |---|     |---|  N  |  M  |  ,  |  .  |  /  |SHFT |
+      //                                    |---------------------| ALT | GUI | SPC |     | SPC | GUI | MIC |---------------------|
+      //                                                          |-----------------|     |-----------------|
+      bindings = <
+                                  &kp TAB   &kp Q &kp W &kp E   &kp R   &kp T /*|             |*/ &kp Y &kp U   &kp I       &kp O   &kp P    &kp BSPC
+                                  &kp ESC   &kp A &kp S &lt 2 D &lt 1 F &kp G /*|             |*/ &kp H &lt 1 J &mt LCTRL K &kp L   &kp SEMI &kp SQT
+                                  &kp LSHFT &kp Z &kp X &kp C   &kp V   &kp B /*|             |*/ &kp N &kp M   &kp COMMA   &kp DOT &kp FSLH &kp RSHFT
+                                                      &kp LALT &mt LGUI SPC &none /*|     |*/ &none &mt RGUI SPC &kp LA(LC(F10))
+      >;
+    };
 
-                sym_layer {
-//                      |-----------------------------------|             |-----------------------------------|
-//                      |  `  |  !  |  @  |  #  |  $  |  %  |             |  =  |  7  |  8  |  9  |  [  |  ]  |
-//                      |  ^  |  &  |  *  |  (  |  )  |  _  |             |  -  |  4  |  5  |  6  |  {  |  }  |
-//                      |  ~  |     |     |  =  |  >  |     |---|     |---|  +  |  1  |  2  |  3  |  \  |  |  |
-//                      |---------------------|     | WMV | ENT |     |     |  0  |     |---------------------|
-//                                            |-----------------|     |-----------------|
-                        bindings = <
-&kp GRAVE &kp EXCL &kp AT    &kp POUND &kp DLLR &kp PRCNT /*|             |*/ &kp EQUAL &kp N7 &kp N8 &kp N9 &kp LBKT &kp RBKT
-&kp CARET &kp AMPS &kp ASTRK &kp LPAR  &kp RPAR &kp UNDER /*|             |*/ &kp MINUS &kp N4 &kp N5 &kp N6 &kp LBRC &kp RBRC
-&kp TILDE &none    &none     &kp EQUAL &kp GT   &none     /*|             |*/ &kp PLUS  &kp N1 &kp N2 &kp N3 &kp BSLH &kp PIPE
-                               &none &kp LA(LC(LGUI)) &kp RET /*|     |*/ &none &kp N0 &none
-                        >;
-                };
+    sym_layer {
+      //                                    |-----------------------------------|             |-----------------------------------|
+      //                                    |  `  |  !  |  @  |  #  |  $  |  %  |             |  =  |  7  |  8  |  9  |  [  |  ]  |
+      //                                    |  ^  |  &  |  *  |  (  |  )  |  _  |             |  -  |  4  |  5  |  6  |  {  |  }  |
+      //                                    |  ~  |     |     |  =  |  >  |     |---|     |---|  +  |  1  |  2  |  3  |  \  |  |  |
+      //                                    |---------------------|     | WMV | ENT |     |     |  0  |     |---------------------|
+      //                                                          |-----------------|     |-----------------|
+      bindings = <
+        &kp GRAVE &kp EXCL &kp AT    &kp POUND             &kp DLLR &kp PRCNT /*|             |*/ &kp EQUAL &kp N7 &kp N8 &kp N9 &kp LBKT &kp RBKT
+        &kp CARET &kp AMPS &kp ASTRK &mt LA(LC(LGUI)) LPAR &kp RPAR &kp UNDER /*|             |*/ &kp MINUS &kp N4 &kp N5 &kp N6 &kp LBRC &kp RBRC
+        &kp TILDE &none    &none     &kp EQUAL             &kp GT   &none     /*|             |*/ &kp PLUS  &kp N1 &kp N2 &kp N3 &kp BSLH &kp PIPE
+                                                              &none &kp RET &none /*|     |*/ &none &kp N0 &none
+      >;
+    };
 
-                nav_layer {
-//                      |-----------------------------------|             |-----------------------------------|
-//                      |     |     |     |     |     |     |             |ALFT |ADWN | AUP |ARGT |     |     |
-//                      |     |     |     |     | SHFT|     |             | LFT | DWN | UP  | RGT |     |     |
-//                      |     |     |     |     |     |     |---|     |---|HOME |PGDN |PGUP | END |     |     |
-//                      |---------------------|     |     |     |     |     |     |     |---------------------|
-//                                            |-----------------|     |-----------------|
-                        bindings = <
-                  &none &none &none &none &none     &none /*|             |*/ &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none &none
-                  &none &none &none &none &kp LSHFT &none /*|             |*/ &kp LEFT     &kp DOWN     &kp UP     &kp RIGHT     &none &none
-                  &none &none &none &none &none     &none /*|             |*/ &kp HOME     &kp PG_DN    &kp PG_UP  &kp END       &none &none
-                                            &none &none &none /*|     |*/ &none &none &none
-                        >;
-                };
-        };
+    nav_layer {
+      //                                    |-----------------------------------|             |-----------------------------------|
+      //                                    |     |     |     |     |     |     |             |ALFT |ADWN | AUP |ARGT |     |     |
+      //                                    |     |     |     |     | SHFT|     |             | LFT | DWN | UP  | RGT |     |     |
+      //                                    |     |     |     |     |     |     |---|     |---|HOME |PGDN |PGUP | END |     |     |
+      //                                    |---------------------|     |     |     |     |     |     |     |---------------------|
+      //                                                          |-----------------|     |-----------------|
+      bindings = <
+                                      &none &none &none &none &none     &none /*|             |*/ &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none &none
+                                      &none &none &none &none &kp LSHFT &none /*|             |*/ &kp LEFT     &kp DOWN     &kp UP     &kp RIGHT     &none &none
+                                      &none &none &none &none &none     &none /*|             |*/ &kp HOME     &kp PG_DN    &kp PG_UP  &kp END       &none &none
+                                                                &none &none &none /*|     |*/ &none &none &none
+      >;
+    };
+  };
 };
