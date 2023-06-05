@@ -27,13 +27,13 @@
       //                           | TAB |  Q  |  W  |  E  |  R  |  T  |             |  Y  |  U  |  I  |  O  |  P  |BKSP |
       //                           | ESC |  A  |  S  |  D* |  F* |  G  |             |  H  |  J* |  K* |  L  |  ;  | '   |
       //                           | SHFT|  Z  |  X  |  C  |  V  |  B  |---|     |---|  N  |  M  |  ,  |  .  |  /  |SHFT |
-      //                           |---------------------| ALT | GUI |     |     | SPC | GUI | MIC |---------------------|
+      //                           |---------------------| ALT | GUI |     |     | SPC | GUI |CTRL*|---------------------|
       //                                                 |-----------------|     |-----------------|
       bindings = <
-                         &kp TAB   &kp Q &kp W &kp E   &kp R   &kp T /*|             |*/ &kp Y &kp U   &kp I       &kp O   &kp P    &kp BSPC
-                         &kp ESC   &kp A &kp S &lt 2 D &lt 1 F &kp G /*|             |*/ &kp H &lt 1 J &mt LCTRL K &kp L   &kp SEMI &kp SQT
-                         &kp LSHFT &kp Z &kp X &kp C   &kp V   &kp B /*|             |*/ &kp N &kp M   &kp COMMA   &kp DOT &kp FSLH &kp RSHFT
-                                                 &kp LALT &kp LGUI &none /*|     |*/ &kp SPC &kp RGUI &kp MIC
+                         &kp TAB   &kp Q &kp W &kp E   &kp R   &kp T /*|             |*/ &kp Y &kp U   &kp I     &kp O   &kp P    &kp BSPC
+                         &kp ESC   &kp A &kp S &lt 2 D &lt 1 F &kp G /*|             |*/ &kp H &lt 1 J &lt 2 K   &kp L   &kp SEMI &kp SQT
+                         &kp LSHFT &kp Z &kp X &kp C   &kp V   &kp B /*|             |*/ &kp N &kp M   &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                                                 &kp LALT &kp LGUI &none /*|     |*/ &kp SPC &kp RGUI &mt LCTRL MIC
       >;
     };
 
@@ -52,17 +52,17 @@
       >;
     };
 
-    nav_layer {
+    nav_fn_layer {
       //                           |-----------------------------------|             |-----------------------------------|
-      //                           |     |     |     |     |     |     |             |ALFT | ADN | AUP |ARGT |     |     |
-      //                           |     |     |     |     | SHFT|     |             | LFT |  DN |  UP | RGT |     |     |
+      //                           |     |     |     |     |     | +VOL|             |ALFT | ADN | AUP |ARGT |     | DEL |
+      //                           |     |     |     |     | SHFT| -VOL|             | LFT |  DN |  UP | RGT |     |     |
       //                           |     |     |     |     |     |     |---|     |---|HOME |PGDN |PGUP | END |     |     |
       //                           |---------------------|     |     |     |     |     |     |     |---------------------|
       //                                                 |-----------------|     |-----------------|
       bindings = <
-                             &none &none &none &none &none     &none /*|             |*/ &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none &none
-                             &none &none &none &none &kp LSHFT &none /*|             |*/ &kp LEFT     &kp DOWN     &kp UP     &kp RIGHT     &none &none
-                             &none &none &none &none &none     &none /*|             |*/ &kp HOME     &kp PG_DN    &kp PG_UP  &kp END       &none &none
+                      &none &none &none &none &none     &kp C_VOL_UP /*|             |*/ &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none &kp DEL
+                      &none &none &none &none &kp LSHFT &kp C_VOL_DN /*|             |*/ &kp LEFT     &kp DOWN     &kp UP     &kp RIGHT     &none &none
+                      &none &none &none &none &none     &none        /*|             |*/ &kp HOME     &kp PG_DN    &kp PG_UP  &kp END       &none &none
                                                        &none &none &none /*|     |*/ &none &none &none
       >;
     };
