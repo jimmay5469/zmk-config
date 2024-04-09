@@ -7,6 +7,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 // WMV - Window moving shortcuts
 #define WMV LA(LC(LGUI))
@@ -20,47 +21,62 @@
     compatible = "zmk,keymap";
 
     default_layer {
-      //                           |-----------------------------------|             |-----------------------------------|
-      //                           | TAB |  Q  |  W  |  E  |  R  |  T  |             |  Y  |  U  |  I  |  O  |  P  |BKSP |
-      //                           | ESC |  A  |  S  |  D* |  F* |  G  |             |  H  |  J* |  K* |  L  |  ;  | '   |
-      //                           | SHFT|  Z  |  X  |  C  |  V  |  B  |---|     |---|  N  |  M  |  ,  |  .  |  /  |SHFT |
-      //                           |---------------------| ALT | GUI |     |     | SPC | GUI |CTRL |---------------------|
-      //                                                 |-----------------|     |-----------------|
+      //                             |-----------------------------------|             |-----------------------------------|
+      //                             | TAB |  Q  |  W  |  E  |  R  |  T  |             |  Y  |  U  |  I  |  O  |  P  |BKSP |
+      //                             | ESC |  A  |  S  |  D* |  F* |  G  |             |  H  |  J* |  K* |  L  |  ;  | '   |
+      //                             | SHFT|  Z  |  X  |  C  |  V  |  B* |---|     |---|  N  |  M  |  ,  |  .  |  /  |SHFT |
+      //                             |---------------------| ALT | GUI |     |     | SPC | GUI |CTRL |---------------------|
+      //                                                   |-----------------|     |-----------------|
       bindings = <
-                         &kp TAB   &kp Q &kp W &kp E   &kp R   &kp T /*|             |*/ &kp Y &kp U   &kp I     &kp O   &kp P    &kp BSPC
-                         &kp ESC   &kp A &kp S &lt 2 D &lt 1 F &kp G /*|             |*/ &kp H &lt 1 J &lt 2 K   &kp L   &kp SEMI &kp SQT
-                         &kp LSHFT &kp Z &kp X &kp C   &kp V   &kp B /*|             |*/ &kp N &kp M   &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                                                 &kp LALT &kp LGUI &none /*|     |*/ &kp SPC &kp RGUI &kp LCTRL
+                         &kp TAB   &kp Q &kp W &kp E   &kp R   &kp T   /*|             |*/ &kp Y &kp U   &kp I     &kp O   &kp P    &kp BSPC
+                         &kp ESC   &kp A &kp S &lt 2 D &lt 1 F &kp G   /*|             |*/ &kp H &lt 1 J &lt 2 K   &kp L   &kp SEMI &kp SQT
+                         &kp LSHFT &kp Z &kp X &kp C   &kp V   &lt 3 B /*|             |*/ &kp N &kp M   &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                                                   &kp LALT &kp LGUI &none /*|     |*/ &kp SPC &kp RGUI &kp LCTRL
       >;
     };
 
     sym_layer {
-      //                           |-----------------------------------|             |-----------------------------------|
-      //                           |  `  |  !  |  @  |  #  |  $  |  %  |             |  =  |  7  |  8  |  9  |  [  |  ]  |
-      //                           |  ^  |  &  |  *  |  (* |  )  |  _  |             |  -  |  4  |  5  |  6  |  {  |  }  |
-      //                           |  ~  |     |     |  =  |  >  |     |---|     |---|  +  |  1  |  2  |  3  |  \  |  |  |
-      //                           |---------------------|     |     | ENT |     |     |  0  |     |---------------------|
-      //                                                 |-----------------|     |-----------------|
+      //                             |-----------------------------------|             |-----------------------------------|
+      //                             |  `  |  !  |  @  |  #  |  $  |  %  |             |  =  |  7  |  8  |  9  |  [  |  ]  |
+      //                             |  ^  |  &  |  *  |  (* |  )  |  _  |             |  -  |  4  |  5  |  6  |  {  |  }  |
+      //                             |  ~  |     |     |  =  |  >  |     |---|     |---|  +  |  1  |  2  |  3  |  \  |  |  |
+      //                             |---------------------|     |     | ENT |     |     |  0  |     |---------------------|
+      //                                                   |-----------------|     |-----------------|
       bindings = <
-        &kp GRAVE &kp EXCL &kp AT    &kp POUND    &kp DLLR &kp PRCNT /*|             |*/ &kp EQUAL &kp N7 &kp N8 &kp N9 &kp LBKT &kp RBKT
-        &kp CARET &kp AMPS &kp ASTRK &mt WMV LPAR &kp RPAR &kp UNDER /*|             |*/ &kp MINUS &kp N4 &kp N5 &kp N6 &kp LBRC &kp RBRC
-        &kp TILDE &none    &none     &kp EQUAL    &kp GT   &none     /*|             |*/ &kp PLUS  &kp N1 &kp N2 &kp N3 &kp BSLH &kp PIPE
-                                                     &none &none &kp RET /*|     |*/ &none &kp N0 &none
+          &kp GRAVE &kp EXCL &kp AT    &kp POUND    &kp DLLR &kp PRCNT /*|             |*/ &kp EQUAL &kp N7 &kp N8 &kp N9 &kp LBKT &kp RBKT
+          &kp CARET &kp AMPS &kp ASTRK &mt WMV LPAR &kp RPAR &kp UNDER /*|             |*/ &kp MINUS &kp N4 &kp N5 &kp N6 &kp LBRC &kp RBRC
+          &kp TILDE &none    &none     &kp EQUAL    &kp GT   &none     /*|             |*/ &kp PLUS  &kp N1 &kp N2 &kp N3 &kp BSLH &kp PIPE
+                                                       &none &none &kp RET /*|     |*/ &none &kp N0 &none
       >;
     };
 
     nav_fn_layer {
-      //                           |-----------------------------------|             |-----------------------------------|
-      //                           |     |     |     |     |     | +VOL|             |ALFT | ADN | AUP |ARGT |     | DEL |
-      //                           |     |     |     |     | SHFT| -VOL|             | LFT |  DN |  UP | RGT |     |     |
-      //                           |     |     |     |     |     |     |---|     |---|HOME |PGDN |PGUP | END |     |     |
-      //                           |---------------------|     |     |     |     |     |     |     |---------------------|
-      //                                                 |-----------------|     |-----------------|
+      //                             |-----------------------------------|             |-----------------------------------|
+      //                             |     |     |     |     |     | +VOL|             |ALFT | ADN | AUP |ARGT |     | DEL |
+      //                             |     |     |     |     | SHFT| -VOL|             | LFT |  DN |  UP | RGT |     |     |
+      //                             |     |     |     |     |     |     |---|     |---|HOME |PGDN |PGUP | END |     |     |
+      //                             |---------------------|     |     |     |     |     |     |     |---------------------|
+      //                                                   |-----------------|     |-----------------|
       bindings = <
-                      &none &none &none &none &none     &kp C_VOL_UP /*|             |*/ &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none &kp DEL
-                      &none &none &none &none &kp LSHFT &kp C_VOL_DN /*|             |*/ &kp LEFT     &kp DOWN     &kp UP     &kp RIGHT     &none &none
-                      &none &none &none &none &none     &none        /*|             |*/ &kp HOME     &kp PG_DN    &kp PG_UP  &kp END       &none &none
-                                                       &none &none &none /*|     |*/ &none &none &none
+                        &none &none &none &none &none     &kp C_VOL_UP /*|             |*/ &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none &kp DEL
+                        &none &none &none &none &kp LSHFT &kp C_VOL_DN /*|             |*/ &kp LEFT     &kp DOWN     &kp UP     &kp RIGHT     &none &none
+                        &none &none &none &none &none     &none        /*|             |*/ &kp HOME     &kp PG_DN    &kp PG_UP  &kp END       &none &none
+                                                         &none &none &none /*|     |*/ &none &none &none
+      >;
+    };
+
+    bt_fn_layer {
+      //                             |-----------------------------------|             |-----------------------------------|
+      //                             |     |     |     |     |     |     |             |     | BT7 | BT8 | BT9 |     | BTC |
+      //                             |     |     |     |     |     |     |             |     | BT4 | BT5 | BT6 |     |     |
+      //                             |     |     |     |     |     |     |---|     |---|     | BT1 | BT2 | BT3 |     |     |
+      //                             |---------------------|     |     |     |     | OUT |     |     |---------------------|
+      //                                                   |-----------------|     |-----------------|
+      bindings = <
+                                   &none &none &none &none &none &none /*|             |*/ &none &bt BT_SEL 6 &bt BT_SEL 7 &bt BT_SEL 8 &none &bt BT_CLR
+                                   &none &none &none &none &none &none /*|             |*/ &none &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 &none &none
+                                   &none &none &none &none &none &none /*|             |*/ &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &none &none
+                                                         &none &none &none /*|     |*/ &out OUT_TOG &none &none
       >;
     };
   };
